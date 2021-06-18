@@ -6,6 +6,10 @@ normalized_difference_MNIenabled333.stl
 	1. pre/post-operative MRI scalp files registered to MNI template. 
 	2. MIN_thres = 0.33
 
+normalized_difference_MNIenabled040.stl
+    1. pre/post-operative MRI scalp files registered to MNI template. 
+    2. MIN_thres = 0.40
+
 normalized_difference_MNIenabled045.stl
 	1. pre/post-operative MRI scalp files registered to MNI template. 
 	2. MIN_thres = 0.45
