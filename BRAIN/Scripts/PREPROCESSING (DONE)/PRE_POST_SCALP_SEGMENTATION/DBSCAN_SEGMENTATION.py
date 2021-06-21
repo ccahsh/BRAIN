@@ -28,7 +28,7 @@ preop_name = input("\n(REQUIRED) Type in the name of the pre-operative SCALP fil
 
 postop_name = input("\n(REQUIRED) Type in the name of the post-operative SCALP file. Make sure you include nii.gz format.\n\n")
 
-MNI_registration = input("\n(OPTIONAL) Type Y if you would like to register pre-operative and post-operative SCALP files to MNI152 SCALP file. If not, press enter instead.\n\n")
+MNI_registration = input("\n(OPTIONAL) Type Y if you would like to register pre-operative and post-operative SCALP files to MNI152 SCALP file. If not, press enter instead. We recommend MNI normalization so as to make the GT models congruent to the MRI template scalp file, which may be used as input for training algorithm.\n\n")
 
 # Optional: Task 0 : MNI Scalp Extraction and Input Normalization
 
