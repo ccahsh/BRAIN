@@ -142,7 +142,7 @@ MIN_thres = 0.34
 for x in range(0,AA.shape[0]-1):
     for y in range(0,AA.shape[1]-1):
         for z in range(0,AA.shape[2]-1):
-            if abs(AA[x][y][z]-BB[x][y][z] > MIN_thres):
+            if abs(AA[x][y][z]-BB[x][y][z] > MIN_thres): #andBB[x][y][z] == 0
                 normal_diff[x][y][z] = 1
             else:
                 normal_diff[x][y][z] = 0
@@ -287,7 +287,7 @@ minpts_r = range(3,10)
 
 for k in eps_r:
     for j in minpts_r:
-        model = DBSCAN(eps = k*0.01, min_samples = j)
+        model = DBSCAN(eps = int(k)*0.01, min_samples = int(j))
         run = model.fit(valid_coord_rescaled)
         S.append(metrics.silhouette_score(valid_coord_rescaled, run.labels_, metric='euclidean'))
         comb.append([str(k),str(j)])
@@ -311,7 +311,7 @@ j_max = Smax_set[1]
 
 # Task 3.3.3 : Performing DBSCAN
 
-maxmodel = DBSCAN(eps = k_max*0.01, min_samples = j_max, metric = 'euclidean', metric_params = None, algorithm='auto', leaf_size = 30, p = None, n_jobs = None)
+maxmodel = DBSCAN(eps = int(k_max)*0.01, min_samples = intt(j_max), metric = 'euclidean', metric_params = None, algorithm='auto', leaf_size = 30, p = None, n_jobs = None)
 
 # All parameters included for potential adjustments.
 
