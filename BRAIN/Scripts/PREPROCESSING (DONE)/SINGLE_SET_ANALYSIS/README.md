@@ -9,3 +9,5 @@ SCALP_BRAIN_SEGMENTATION.py segments scalp and brain mask from three inputs:
 T2w is set optional, so the python script can work both ways.
 
 Tumor segmentation requires T1w, T2w, T1ce, and FLAIR files. T2w could be used only for tumor segmentation.
+
+Modules and libaries for tumor segmentation DeepBrainSeg may not be applicable in some devices. I am currently finding alternatives for those cases, while finalizing the architecture for the prediction algorithm. 
