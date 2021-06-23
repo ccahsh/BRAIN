@@ -267,6 +267,8 @@ for k in range(len(Z)):
 valid_coord_rescaled = []
 for e in range(len(X_rescaled)):
     valid_coord_rescaled.append([X_rescaled[e],Y_rescaled[e],Z_rescaled[e]])
+  
+valid_coord_rescaled = np.array(valid_coord_rescaled) 
 
 #print(valid_coord_rescaled)
 
@@ -280,10 +282,10 @@ S = []
 comb = []
 
 eps_r = range(5,75)
-minpts_r = range(3,10)
+minpts_r = range(3,200)
 
-# Comment 1: Ranges for epsilon value and minimum points have to be optimized with GPU support because the code takes more than 2 hours on laptop.
-# Comment 2: k_max may not have a value for eps_r = range(6,12) and minpts_r = range(3,8) because "TypeError: unsupported operand type(s) for /: 'str' and 'int'" appeared in terminal after running the code with the parameters mentioned.
+# Comment 1: Ranges for epsilon value and minimum points have to be optimized with GPU support because the code takes more than 2 hours on laptop to run once.
+# Comment 2: Epsilon value should be at least 6, and minimum points should be greater than 10. The optimal values cannot be calculated given comment 1 above. 
 
 for k in eps_r:
     for j in minpts_r:
@@ -306,12 +308,14 @@ for q in range(len(eps_r)*len(minpts_r)):
 # Assume silhouette coefficient will be 1 mode for max. If not, the code is still valid because the epsilon value is smallest.
 
 k_max = Smax_set[0]
+#print(k_max)
 j_max = Smax_set[1]
+#print(j_max)
 
 
 # Task 3.3.3 : Performing DBSCAN
 
-maxmodel = DBSCAN(eps = int(k_max)*0.01, min_samples = intt(j_max), metric = 'euclidean', metric_params = None, algorithm='auto', leaf_size = 30, p = None, n_jobs = None)
+maxmodel = DBSCAN(eps = int(k_max)*0.01, min_samples = int(j_max), metric = 'euclidean', metric_params = None, algorithm='auto', leaf_size = 30, p = None, n_jobs = None)
 
 # All parameters included for potential adjustments.
 
@@ -337,7 +341,48 @@ for r in range(cluster_max+1):
     for s in range(len(cluster_indi)):
         cluster_coord[cluster_indi[s][0],cluster_indi[s][1],cluster_indi[s][2]] = 1
     cluster_nib = nib.Nifti1Image(cluster_coord, affine=np.eye(4))
-    nib.save(cluster_nib, "DBSCAN-cluster" + str(r) + ".nii.gz"))
+    nib.save(cluster_nib, "DBSCAN-cluster" + str(r) + ".nii.gz")
+    
+    def nii_2_mesh(filename_nii, filename_stl, label):
+
+        reader = vtk.vtkNIFTIImageReader()
+        reader.SetFileName(filename_nii)
+        reader.Update()
+        
+        surf = vtk.vtkDiscreteMarchingCubes()
+        surf.SetInputConnection(reader.GetOutputPort())
+        surf.SetValue(0, label)
+        surf.Update()
+        
+        smoother= vtk.vtkWindowedSincPolyDataFilter()
+        if vtk.VTK_MAJOR_VERSION <= 5:
+            smoother.SetInput(surf.GetOutput())
+        else:
+            smoother.SetInputConnection(surf.GetOutputPort())
+        smoother.SetNumberOfIterations(30)
+        smoother.NonManifoldSmoothingOn()
+        smoother.NormalizeCoordinatesOn()
+        smoother.GenerateErrorScalarsOn()
+        smoother.Update()
+         
+        writer = vtk.vtkSTLWriter()
+        writer.SetInputConnection(smoother.GetOutputPort())
+        writer.SetFileTypeToASCII()
+        writer.SetFileName(filename_stl)
+        writer.Write()
+    
+    if __name__ == '__main__':
+
+        X = "DBSCAN-cluster" + str(r) + ".nii.gz"
+        
+        Y = X[:-7] + '.stl'
+        
+        filename_nii =  X
+        filename_stl = Y
+        label = 1
+        nii_2_mesh(filename_nii, filename_stl, label)
+        
     shutil.move("DBSCAN-cluster" + str(r) + ".nii.gz", 'Clusters_' + str(cluster_label))
+    shutil.move("DBSCAN-cluster" + str(r) + ".stl", 'Clusters_' + str(cluster_label)) 
     
 # Cluster files created and saved in 'Clusters' folder.
