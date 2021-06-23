@@ -9,3 +9,5 @@ Major comments on the python script:
 # Comment 1: Ranges for epsilon value and minimum points have to be optimized with GPU support because the code takes more than 2 hours on laptop to run once.
 
 # Comment 2: Experimentally, epsilon value should be at least 6, and minimum points should be greater than 10. The optimal values cannot be calculated with laptop alone given comment 1 above. 
+
+Once optimal values for epsilon and minimum points are identified, further preprocessing such as convexhull 3D (for generating skull flap-like mesh from cluster of points) can be performed. Whether convexhull-modified  or -unmodified data will be used as GT for training the prediction algorithm is to be determined after completing the script for algorithm. 
