@@ -23,9 +23,9 @@ os.system("cd HD-BET")
 os.system("pip3 install -e .")
 os.system("cd ..")
 
-os.system("pip3 install DeepBrainSeg")
+os.system("pip3 install DeepBrainSeg") #put a sharp if this doesn't work in hospital intranet
 
-from DeepBrainSeg import deepSeg
+from DeepBrainSeg import deepSeg #put a sharp if this doesn't work in hospital intranet
 
 # Task 1 : Query. T1w and MNI152 files are mandatory, while T2w files are optional.
 
@@ -322,8 +322,8 @@ t2_path = T2w_pretumor_name
 t1ce_path = T1ce_pretumor_name
 flair_path = FLAIR_pretumor_name
 
-segmentor = deepSeg(quick=True)
-segmentor.get_segmentation(t1_path, t2_path, t1ce_path, flair_path, save = True)
+segmentor = deepSeg(quick=True) #put a sharp if this doesn't work in hospital intranet
+segmentor.get_segmentation(t1_path, t2_path, t1ce_path, flair_path, save = True) #put a sharp if this doesn't work in hospital intranet
 
 #Tumor segmentation has not been done yet due to poor processing speed in Macbook Pro. Confirming the location of saved files is necessary.
 #Unlike HD-BET, nnUNet requires GPU, so the code cannot be done in regular laptop. Link to nnUNet: https://github.com/MIC-DKFZ/nnUNet. Installation and setup cannot be done in Macbook Pro as of right now.
