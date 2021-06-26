@@ -25,6 +25,7 @@ nibabel==3.2.1
 nipype==1.6.1
 numpy==1.21.0
 packaging==20.9
+pandas==1.2.5
 pathlib==1.0.1
 Pillow==8.2.0
 plotly==5.0.0
