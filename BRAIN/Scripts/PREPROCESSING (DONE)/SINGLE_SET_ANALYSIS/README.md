@@ -10,4 +10,4 @@ T2w is set optional, so the python script can work both ways.
 
 Tumor segmentation requires T1w, T2w, T1ce, and FLAIR files. T2w could be used only for tumor segmentation.
 
-Modules and libaries for tumor segmentation DeepBrainSeg may not be applicable in some devices. I am currently finding alternatives for those cases, while finalizing the architecture for the prediction algorithm. 
+Modules and libaries for tumor segmentation DeepBrainSeg may not be applicable in some devices. I am currently finding alternatives for those cases, while finalizing the architecture for the prediction algorithm. (Additional Comment: the tumor segmentation algorithm needs to be changed)
