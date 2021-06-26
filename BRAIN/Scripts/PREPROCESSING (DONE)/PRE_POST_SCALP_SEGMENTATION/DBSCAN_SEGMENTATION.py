@@ -1,5 +1,5 @@
 
-#from line 284 - Comment 1: Ranges for epsilon value and minimum points have to be optimized with GPU support because the code takes more than 2 hours on laptop.
+#from line 292 - Comment 1: Ranges for epsilon value and minimum points have to be optimized with GPU support because the code takes more than 2 hours on laptop.
 
 import os
 import vtk
@@ -18,7 +18,12 @@ from mpl_toolkits.mplot3d import Axes3D
 
 
 
-# Before: Identification
+# Before: HD-BET Installation and Identification
+
+os.system("git clone https://github.com/MIC-DKFZ/HD-BET")
+os.system("cd HD-BET")
+os.system("pip3 install -e .")
+os.system("cd ..")
 
 introduction = input("\nYou need to give cluster classification number, pre-operative and post-operative SCALP files. MNI152 raw file is optional. Press enter to continue.\n\n")
 
