@@ -2,8 +2,8 @@
 # def functions are not used purposefully. Code will be condensed once it is approved.
 # pip3 is assumed to be installed. Replace pip3 with pip in if pip is used instead.
 # First few lines of code will install and setup HD-BET from https://github.com/MIC-DKFZ/HD-BET and DeepBrainSeg from https://github.com/koriavinash1/DeepBrainSeg. HD-BET is the most up-to-date brain segmentation algorithm (6/16/21). DeepBrainSeg has a pretrained model for tumor segmentation that could also be run in Macbook Pro. Delete or comment on lines 21-26 once HD-BET and DeepBrainSeg are installed.
-# Line 201 comment : FLIRT before brain extraction vs. FLIRT after brain extraction?
-# Line 328 comment: Tumor segmentation has not been done yet due to poor processing speed in Macbook Pro. Confirming the location of saved files is necessary.
+# Line 219 comment : FLIRT before brain extraction vs. FLIRT after brain extraction?
+# Line 346 comment: Tumor segmentation has not been done yet due to poor processing speed in Macbook Pro. Confirming the location of saved files is necessary.
 
 
 import os
@@ -53,7 +53,7 @@ confirmation1 = input("\nFile labels standardized for alignment. Press enter to 
         
         
         
-# Task 2 : Alignment of T1w and T2w files to MNI152 file.
+# Task 2 : Alignment of T1w and T2w files to MNI152 file.  
 
 flt = fsl.FLIRT(bins=640, cost_func='mutualinfo')
 flt.inputs.in_file = 'input-t1w.nii.gz'
@@ -184,7 +184,25 @@ for x in range(0, t1w_t2w_A.shape[0]-1):
         for z in range(0, t1w_t2w_A.shape[2]-1):
             if(t1w_t2w_A[x][y][z] < MAX_thres):
                 t1w_t2w_A[x][y][z] = 0
+                
+# Task 5.6 : Removing non-scalp voxels by area inspection.
+
+ns_thres = 0.34
+
+for x in range(1, t1w_t2w_A.shape[0]-1):
+for y in range(1, t1w_t2w_A.shape[1]-1):
+    for z in range(1, t1w_t2w_A.shape[2]-1):
+        M = 0
+        for k in range(-1,2):
+            for m in range(-1,2):
+                for n in range(-1,2):
+                    if t1w_t2w_A[x+k][y+m][z+n] >= M:
+                        M = t1w_t2w_A[x+k][y+m][z+n]
+        if M < ns_thres:
+            t1w_t2w_A[x][y][z] = 0
  
+# Task 5.7 : Extraction
+
 scalp_array = nib.Nifti1Image(t1w_t2w_A, affine=np.eye(4))
 nib.save(scalp_array, "t1w_t2w_overlay_MNIenabled_SCALP.nii.gz")
 
