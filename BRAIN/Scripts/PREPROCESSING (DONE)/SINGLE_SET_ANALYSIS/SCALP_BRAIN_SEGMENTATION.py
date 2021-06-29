@@ -1,4 +1,4 @@
-
+ 
 # def functions are not used purposefully. Code will be condensed once it is approved.
 # pip3 is assumed to be installed. Replace pip3 with pip in if pip is used instead.
 # First few lines of code will install and setup HD-BET from https://github.com/MIC-DKFZ/HD-BET and DeepBrainSeg from https://github.com/koriavinash1/DeepBrainSeg. HD-BET is the most up-to-date brain segmentation algorithm (6/16/21). DeepBrainSeg has a pretrained model for tumor segmentation that could also be run in Macbook Pro. Delete or comment on lines 21-26 once HD-BET and DeepBrainSeg are installed.
