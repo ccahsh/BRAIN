@@ -1,5 +1,5 @@
 
-#from line 292 - Comment 1: Ranges for epsilon value and minimum points have to be optimized with GPU support because the code takes more than 2 hours on laptop.
+#from line 318 - Comment 1: Ranges for epsilon value and minimum points have to be optimized with GPU support because the code takes more than 2 hours on laptop.
 
 import os
 import vtk
@@ -61,6 +61,8 @@ if (MNI_registration == Y):
     brain_mask_A = np.array(brain_mask.dataobj)
     MNI_ref_A = np.array(MNI_ref.dataobj)
 
+    # Task 0.2.1 : Dimension check.
+
     if(brain_mask_A.shape == MNI_ref_A.shape):
         
         for x in range(0, brain_mask_A.shape[0]-1):
@@ -73,12 +75,16 @@ if (MNI_registration == Y):
 
         print("Comparison not possible due to difference in dimensions.")
         
+    # Task 0.2.2 : Volume Restriction.
+    
     for x in range(0, MNI_ref_A.shape[0]-1):
         for y in range(0, MNI_ref_A.shape[1]-1):
             for z in range(0, MNI_ref_A.shape[2]-1):
                 if(x < ((MNI_ref_A.shape[0]-1)*0.03) or x > ((MNI_ref_A.shape[0]-1)*0.96) or y < ((MNI_ref_A.shape[1]-1)*0.01) or y > ((MNI_ref_A.shape[1]-1)*0.99) or z < ((-(MNI_ref_A.shape[2]-1)*y*0.000275)+85)):
                         MNI_ref_A[x][y][z] = 0
                     
+    # Task 0.2.3 : Maximum value check.
+    
     def paraMAX():
         M = 0
         for x in range(int(0.05*(MNI_ref_A.shape[0]-1)),int(0.95*(MNI_ref_A.shape[0]-1))):
@@ -88,15 +94,35 @@ if (MNI_registration == Y):
                         M = MNI_ref_A[x][y][z]
         return M
         
+    # Task 0.2.4 : Filtering by maximum threshold. 
+    
     MAX = paraMAX()
     MAX_thres = MAX*0.225
-
+    
     for x in range(0, MNI_ref_A.shape[0]-1):
         for y in range(0, MNI_ref_A.shape[1]-1):
             for z in range(0, MNI_ref_A.shape[2]-1):
                 if(MNI_ref_A[x][y][z] < MAX_thres):
                     MNI_ref_A[x][y][z] = 0
-     
+    
+    # Task 0.2.5 : Removing non-scalp voxels by area inspection.
+    
+    ns_thres = 0.34
+    
+    for x in range(1, MNI_ref_A.shape[0]-1):
+    for y in range(1, MNI_ref_A.shape[1]-1):
+        for z in range(1, MNI_ref_A.shape[2]-1):
+            M = 0
+            for k in range(-1,2):
+                for m in range(-1,2):
+                    for n in range(-1,2):
+                        if MNI_ref_A[x+k][y+m][z+n] >= M:
+                            M = MNI_ref_A[x+k][y+m][z+n]
+            if M < ns_thres:
+                MNI_ref_A[x][y][z] = 0
+    
+    # Task 0.2.6 : Extraction
+    
     MNI_scalp_array = nib.Nifti1Image(MNI_ref_A, affine=np.eye(4))
     nib.save(MNI_scalp_array, "MNI-template_SCALP.nii.gz")
 
