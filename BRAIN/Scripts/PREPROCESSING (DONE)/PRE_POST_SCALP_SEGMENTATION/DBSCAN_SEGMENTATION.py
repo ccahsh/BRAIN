@@ -8,6 +8,7 @@ import numpy as np
 import nibabel as nib
 from pathlib import Path
 from sklearn import metrics
+from numba import jit, cuda
 import plotly.express as px
 import matplotlib.pyplot as plt
 from nipype.interfaces import fsl
@@ -15,7 +16,6 @@ import plotly.graph_objects as go
 from sklearn.cluster import DBSCAN
 from nipype.testing import example_data
 from mpl_toolkits.mplot3d import Axes3D
-
 
 
 # Before: HD-BET Installation and Identification
