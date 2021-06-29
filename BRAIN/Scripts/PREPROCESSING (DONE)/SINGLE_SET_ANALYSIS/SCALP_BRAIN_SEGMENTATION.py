@@ -9,9 +9,9 @@
 import os
 import numpy as np
 import nibabel as nib
+from numba import jit, cuda
 from nipype.interfaces import fsl
 from nipype.testing import example_data
-
 
 
 # Task 0 : Reminding the requirements and installing HD-BET / DeepBrainSeg.
