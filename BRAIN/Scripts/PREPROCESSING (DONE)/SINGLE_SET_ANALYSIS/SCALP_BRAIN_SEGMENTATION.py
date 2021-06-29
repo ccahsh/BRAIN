@@ -190,16 +190,16 @@ for x in range(0, t1w_t2w_A.shape[0]-1):
 ns_thres = 0.34
 
 for x in range(1, t1w_t2w_A.shape[0]-1):
-for y in range(1, t1w_t2w_A.shape[1]-1):
-    for z in range(1, t1w_t2w_A.shape[2]-1):
-        M = 0
-        for k in range(-1,2):
-            for m in range(-1,2):
-                for n in range(-1,2):
-                    if t1w_t2w_A[x+k][y+m][z+n] >= M:
-                        M = t1w_t2w_A[x+k][y+m][z+n]
-        if M < ns_thres:
-            t1w_t2w_A[x][y][z] = 0
+    for y in range(1, t1w_t2w_A.shape[1]-1):
+        for z in range(1, t1w_t2w_A.shape[2]-1):
+            M = 0
+            for k in range(-1,2):
+                for m in range(-1,2):
+                    for n in range(-1,2):
+                        if t1w_t2w_A[x+k][y+m][z+n] >= M:
+                            M = t1w_t2w_A[x+k][y+m][z+n]
+            if M < ns_thres:
+                t1w_t2w_A[x][y][z] = 0
  
 # Task 5.7 : Extraction
 
