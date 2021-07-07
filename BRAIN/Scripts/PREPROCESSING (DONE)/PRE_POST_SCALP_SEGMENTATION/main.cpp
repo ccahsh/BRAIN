@@ -4,7 +4,7 @@
 #include "dbscan.h"
 
 #define MINIMUM_POINTS 40     // minimum number of cluster
-#define EPSILON (8)  // distance for clustering, metre^2
+#define EPSILON (25)  // distance for clustering, metre^2
 
 void readBenchmarkData(vector<Point>& points)
 {
