@@ -218,7 +218,7 @@ if __name__ == "__main__":
     for x in range(0,AA.shape[0]-1):
         for y in range(0,AA.shape[1]-1):
             for z in range(0,AA.shape[2]-1):
-                if abs(AA[x][y][z]-BB[x][y][z] > MIN_thres): #andBB[x][y][z] == 0
+                if abs(AA[x][y][z]-BB[x][y][z] > MIN_thres) and BB[x][y][z] == 0:
                     normal_diff[x][y][z] = 1
                 else:
                     normal_diff[x][y][z] = 0
