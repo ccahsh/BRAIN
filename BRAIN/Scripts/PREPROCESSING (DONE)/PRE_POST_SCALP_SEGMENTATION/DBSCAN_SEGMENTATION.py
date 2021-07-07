@@ -305,13 +305,7 @@ if __name__ == "__main__":
         cluster_coord = np.zeros((A.shape[0], A.shape[1], A.shape[2]))
         for s in range(len(cluster_indi)):
             cluster_coord[cluster_indi[s][0][0],cluster_indi[s][0][1],cluster_indi[s][0][2]] = 1
-        count = 0
-        for x in range(A.shape[0]):
-            for y in range(A.shape[1]):
-                for z in range(A.shape[2]):
-                    if cluster_coord[x][y][z] == 1:
-                        count += 1
-        if count >= 10000:
+        if len(cluster_indi) >= 10000:
             cluster_nib = nib.Nifti1Image(cluster_coord, affine=np.eye(4))
             nib.save(cluster_nib, "DBSCAN-cluster" + str(r) + ".nii.gz")
             
