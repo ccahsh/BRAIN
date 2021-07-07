@@ -2,8 +2,8 @@
 # def functions are not used purposefully. Code will be condensed once it is approved. The code is verbose considering jit, but it is not critical.
 # pip3 is assumed to be installed. Replace pip3 with pip in if pip is used instead.
 # First few lines of code will install and setup HD-BET from https://github.com/MIC-DKFZ/HD-BET and DeepBrainSeg from https://github.com/koriavinash1/DeepBrainSeg. HD-BET is the most up-to-date brain segmentation algorithm (6/16/21). DeepBrainSeg has a pretrained model for tumor segmentation that could also be run in Macbook Pro. Delete or comment on lines 21-26 once HD-BET and DeepBrainSeg are installed.
-# Line 223 comment : FLIRT before brain extraction vs. FLIRT after brain extraction?
-# Line 350 comment: Tumor segmentation has not been done yet due to poor processing speed in Macbook Pro. Confirming the location of saved files is necessary.
+# Line 221 comment : FLIRT before brain extraction vs. FLIRT after brain extraction?
+# Line 348 comment: Tumor segmentation has not been done yet due to poor processing speed in Macbook Pro. Confirming the location of saved files is necessary.
 
 
 import os
@@ -189,7 +189,7 @@ if __name__ == "__main__":
                     
     # Task 5.6 : Removing non-scalp voxels by area inspection.
 
-    ns_thres = 0.34
+    ns_thres = MAX*0.34
 
     for x in range(1, t1w_t2w_A.shape[0]-1):
         for y in range(1, t1w_t2w_A.shape[1]-1):
