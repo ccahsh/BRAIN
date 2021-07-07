@@ -9,12 +9,10 @@
 import os
 import numpy as np
 import nibabel as nib
-from numba import jit, cuda
 from nipype.interfaces import fsl
 from nipype.testing import example_data
 
-@jit(target ="cuda")
-def SCALP_segmentation():
+if __name__ == "__main__":
 
     # Task 0 : Reminding the requirements and installing HD-BET / DeepBrainSeg.
 
@@ -350,6 +348,3 @@ def SCALP_segmentation():
     #Tumor segmentation has not been done yet due to poor processing speed in Macbook Pro. Confirming the location of saved files is necessary.
     #Unlike HD-BET, nnUNet requires GPU, so the code cannot be done in regular laptop. Link to nnUNet: https://github.com/MIC-DKFZ/nnUNet. Installation and setup cannot be done in Macbook Pro as of right now.
     #Other examples: https://github.com/Mr-TalhaIlyas/Brain-Tumor-Segmentation, https://github.com/galprz/brain-tumor-segmentation.
-
-
-SCALP_segmentation()
