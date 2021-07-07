@@ -1,5 +1,7 @@
 ALL INPUT MRI FILES MUST BE IN THE SAME DIRECTORY AS SCALP_BRAIN_SEGMENTATION.py without additional subfolders.
 
+Scalp files are not whitened for pre/post scalp analysis in the other folder.
+
 SCALP_BRAIN_SEGMENTATION.py segments scalp and brain mask from three inputs:
 
 	1. T1w file (REQUIRED)
