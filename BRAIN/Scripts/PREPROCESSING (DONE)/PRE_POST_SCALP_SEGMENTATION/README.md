@@ -1,3 +1,4 @@
+UPDATE: Reflection (1,2,3,4 py files) should be used to post-operative scalp ONLY, and MUST be overlaid to scalp diff file RIGHT BEFORE DBSCAN ANALYSIS.
 Flap segmentation is done for pre/post-operative MRI files that already have scalp extracted from SINGLE_SET_ANALYSIS/Python(DRAFT)/single_set_scalp_and_brain.py.
 
 HD-BET folder has been attached here to simplify command lines necessary for brain segmentation. 
