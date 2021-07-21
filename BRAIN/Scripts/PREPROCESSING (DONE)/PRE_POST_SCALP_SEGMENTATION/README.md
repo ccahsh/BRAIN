@@ -2,7 +2,7 @@ UPDATE: Reflection (1,2,3,4 py files) should be used to post-operative scalp ONL
 
 원래 scalp diff 에 뭘 추가: 
 	1. ROI-specific scalp segmentation  (temporal region 집중: MNI registration 한
- 	후 volume restriction  higher threshold filtering  muscle deletion)
+ 	후 volume restriction --> higher threshold filtering --> muscle deletion)
 	2. 전체 scalp (MNI registered, temporal 은 ROI-specific segmentation 후) 좌우 반전
 
 
