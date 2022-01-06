@@ -1,4 +1,5 @@
 # BRAIN
+(NOTE!!! THIS REPOSITORY IS ARCHIVED FOR MONTHS. UPDATED NOTEBOOKS WILL BE LOADED ASAP)
 
 This repository contains all files for the project. Archives are not uploaded due to limited memory space.
 
