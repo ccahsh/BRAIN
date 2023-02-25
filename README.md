@@ -1,7 +1,5 @@
 # BRAIN
-(NOTE!!! THIS REPOSITORY IS ARCHIVED FOR MONTHS. UPDATED NOTEBOOKS WILL BE LOADED ASAP)
-
-This repository contains all files for the project. Archives are not uploaded due to limited memory space.
+This repository contains all files for BRAIN, a neurosurgical navigational toolkit developed by Charles Shin at Seoul National University-Bundang Hospital. Archives are not uploaded due to limited memory space.
 
 The code is recommended to be operated in conda environment with pip/pip3 installed (usually by default). 
 
