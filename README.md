@@ -7,6 +7,6 @@ Python is recommended to be 3.9.1 or above so as to make sure the packages are w
 
 Code has been runned by Colab.  
 
-Sample video output is provided below:  
+Sample video output is provided below (click to see in YouTube):  
 
 [![BRAIN SAMPLE VIDEO](https://img.youtube.com/vi/VF1-skbQ2SY/0.jpg)](https://www.youtube.com/watch?v=VF1-skbQ2SY)
